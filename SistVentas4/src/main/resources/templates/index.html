@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="en">
+<head th:insert="layouts/plantilla:: head">
+</head>
+
+<body id="page-top">
+    
+    
+
+    <div id="wrapper">
+        <div class = "bg-gradient-primary" th:insert="layouts/plantilla:: sidebar"></div>
+        <div id="content-wrapper" class="d-flex flex-column">
+            <div id="content">
+                <nav th:insert="layouts/plantilla:: navbar"></nav>
+                <div th:insert="layouts/plantilla:: content"></div>
+            </div>
+            <footer th:insert="layouts/plantilla:: footer"></footer>
+        </div>
+    </div>
+    
+
+
+    
+    <div th:insert="layouts/plantilla:: endpage"></div>
+
+    <div th:insert="layouts/plantilla:: scripts"></div>
+
+</body>
+
+</html>
+

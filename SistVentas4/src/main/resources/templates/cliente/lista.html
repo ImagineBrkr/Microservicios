@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="en">
+<head th:insert="layouts/plantilla:: head">
+</head>
+
+<body id="page-top">
+
+
+
+<div id="wrapper">
+  <div class = "bg-gradient-primary" th:insert="layouts/plantilla:: sidebar"></div>
+  <div id="content-wrapper" class="d-flex flex-column">
+    <div id="content">
+      <nav th:insert="layouts/plantilla:: navbar"></nav>
+      <div>
+        <div class="container-fluid">
+          <div>
+            <h1>Clientes</h1>
+          </div>
+          <a th:href="@{/cliente/nuevo}" class="pb-5">
+            <button class="btn btn-outline-success btn-lg">
+              <i class="fas fa-plus-circle"></i> Nuevo</button>
+          </a>
+          <br>
+          <br>
+          <table class="table table-primary pt-5">
+            <thead>
+            <tr>
+              <th>ID</th>
+              <th>RUC</th>
+              <th>Razon Social</th>
+              <th sec:authorize="hasRole('ROLE_ADMIN')">Eliminar</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="cliente : ${clientes} ">
+              <td th:text="${cliente.id}" class="table-light"></td>
+              <td th:text="${cliente.RUC}" class="table-light"></td>
+              <td th:text="${cliente.RazonSocial}" class="table-light"></td>
+              <td sec:authorize="hasRole('ROLE_ADMIN')" class="table-light"><a th:href="@{'/cliente/eliminar/'+${cliente.id}}"><button class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></button></a></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <footer th:insert="layouts/plantilla:: footer"></footer>
+  </div>
+</div>
+
+
+
+
+<div th:insert="layouts/plantilla:: endpage"></div>
+
+<div th:insert="layouts/plantilla:: scripts"></div>
+
+</body>
+
+</html>

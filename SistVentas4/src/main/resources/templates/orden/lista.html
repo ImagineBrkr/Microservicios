@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="en">
+<head th:insert="layouts/plantilla:: head">
+</head>
+
+<body id="page-top">
+
+
+
+<div id="wrapper">
+  <div class = "bg-gradient-primary" th:insert="layouts/plantilla:: sidebar"></div>
+  <div id="content-wrapper" class="d-flex flex-column">
+    <div id="content">
+      <nav th:insert="layouts/plantilla:: navbar"></nav>
+      <div>
+        <div class="container-fluid">
+          <div>
+            <h1>Ventas</h1>
+          </div>
+          <a th:href="@{/orden/nuevo}" class="pb-5">
+            <button class="btn btn-outline-success btn-lg">
+              <i class="fas fa-plus-circle"></i> Nueva Venta</button>
+          </a>
+          <br>
+          <br>
+          <table class="table table-primary pt-5">
+            <thead>
+            <tr>
+              <th>ID</th>
+              <th>Fecha</th>
+              <th>Total</th>
+              <th>Usuario</th>
+              <th>Cliente</th>
+              <th>Ver</th>
+              <th>Editar</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="orden : ${ordenes} ">
+              <td th:text="${orden.id}" class="table-light"></td>
+               <td th:text="${orden.fecha}" class="table-light"></td>
+              <td th:text="${orden.total}" class="table-light"></td>
+              <td th:text="${orden.usuario}" class="table-light"></td>
+             <td th:text="${orden.cliente}" class="table-light"></td>              
+              <td class="table-light"><a th:href="@{'/orden/detalle/'+${orden.id}}"><button class="btn btn-outline-primary"><i class="far fa-eye"></i></button></a></td>
+              <td class="table-light"><a th:href="@{'/orden/eliminar/'+${orden.id}}"><button class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></button></a></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <footer th:insert="layouts/plantilla:: footer"></footer>
+  </div>
+</div>
+
+
+
+
+<div th:insert="layouts/plantilla:: endpage"></div>
+
+<div th:insert="layouts/plantilla:: scripts"></div>
+
+</body>
+
+</html>

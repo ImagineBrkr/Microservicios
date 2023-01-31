@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="en">
+<head th:insert="layouts/plantilla:: head">
+</head>
+
+<body id="page-top">
+
+<div id="wrapper">
+  <div class = "bg-gradient-primary" th:insert="layouts/plantilla:: sidebar"></div>
+  <div id="content-wrapper" class="d-flex flex-column">
+    <div id="content">
+      <nav th:insert="layouts/plantilla:: navbar"></nav>
+
+      <div class="container text-center">
+        <div class="row">
+          <div class="col-md-1">
+            <a th:href="@{/orden/lista}" style="text-decoration: none;"><button class="btn btn-outline-info btn-block">
+              <i class="fas fa-arrow-circle-left"></i></button>
+            </a>
+          </div>
+          <div class="col-md-9">
+            <h1>Crear Venta</h1>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-md-2">
+          </div>
+          <div class="col-md-8">
+
+            <div th:if="${error}" class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
+              <p th:text="${error}"></p>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+
+            <form th:action="@{/orden/guardar}"  method="post" class="row g-3">
+              <div class="col-md-6">
+                <label for="fecha" class="form-label">Fecha de Venta</label>
+                <input type="date"  th:value="${fecha}" class="form-control" id="fecha" name="fecha" disabled>
+              </div>
+
+              <div class="form-group col-md-6">
+                <label for="usuario">Usuario</label>
+                <input type="text" th:value="${usuario}" class="form-control" id="usuario" name="usuario" disabled>
+              </div>
+              
+                <div class="form-group col-md-12">
+                <label for="usuario">Cliente</label>
+                <select class="form-control" id="cliente_id" name="cliente_id" required = "required">
+    					<option value="">Selecciona cliente</option>
+    				<option th:each="cliente : ${clientes}" th:value="${cliente.id}" th:text="${cliente.razonSocial}"></option>
+				</select>
+              </div>
+              
+
+
+              <hr class="border border-primary border-2 opacity-50">
+
+              <div class="col-12">
+                <input  type="button" id="agregar" th:data-name="${productos}"  th:onclick="agregarTablas([[${productos}]])" name="agregar" class="btn btn-primary" value="Agregar">
+              </div>
+
+              <table id="productos" class="table">
+                <thead>
+                <tr>
+                  <th scope="col">Producto</th>
+                  <th scope="col">Cantidad</th>
+                  <th scope="col">Precio</th>
+                  <th scope="col">Total</th>
+                  <th scope="col">Eliminar</th>
+                </tr>
+                </thead>
+                <tbody>
+                  <tr hidden></tr>
+                </tbody>
+              </table>
+              <div class="col-10">
+                <h4>Total a Pagar : </h4>
+              </div>
+              <div class="col-2">
+                <span>S/.</span><span id="totalPagar">0.00</span>
+              </div>
+              <div class="col-12">
+                <label hidden for="total" class="form-label">Total</label>
+                <input hidden type="number" id="total"  class="form-control" name="total">
+              </div>
+              <div class="form-group">
+                <button type="submit" id="enviar" hidden class="btn btn-outline-success btn-block">
+                  <i class="far fa-save"></i> Guardar</button>
+              </div>
+
+            </form>
+
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <footer th:insert="layouts/plantilla:: footer"></footer>
+  </div>
+
+</div>
+
+
+
+
+<div th:insert="layouts/plantilla:: endpage"></div>
+
+<div th:insert="layouts/plantilla:: scripts"></div>
+
+<script th:src="@{/js/venta.js}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,1 @@
+insert into producto(nombre, precio, stock, deleted) values('Herramientas', 10, 2, false), ('Llaves', 5, 3, false) ON CONFLICT DO NOTHING;

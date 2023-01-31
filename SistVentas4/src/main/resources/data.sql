@@ -1,0 +1,1 @@
+insert ignore into cliente(RUC, razon_social) values('11111111111', 'Empresa de mecánicos'), ('15817459421', 'Wakapiedra');

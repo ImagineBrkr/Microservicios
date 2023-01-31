@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="en">
+<head th:insert="layouts/plantilla:: head">
+</head>
+
+<body id="page-top">
+
+
+
+<div id="wrapper">
+  <div class = "bg-gradient-primary" th:insert="layouts/plantilla:: sidebar"></div>
+  <div id="content-wrapper" class="d-flex flex-column">
+    <div id="content">
+      <nav th:insert="layouts/plantilla:: navbar"></nav>
+      <div>
+        <div class="container-fluid">
+          <div>
+            <h1>Detalles</h1>
+          </div>
+          <br>
+          <br>
+          <table class="table table-primary pt-5">
+            <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Cantidad</th>
+              <th>Precio</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="detalle : ${detalles} ">
+              <td th:text="${detalle.producto.id}" class="table-light"></td>
+              <td th:text="${detalle.producto.nombre}" class="table-light"></td>
+              <td th:text="${detalle.orden.cantidad}" class="table-light"></td>
+              <td th:text="${detalle.producto.precio}" class="table-light"></td>
+              
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <footer th:insert="layouts/plantilla:: footer"></footer>
+  </div>
+</div>
+
+
+
+
+<div th:insert="layouts/plantilla:: endpage"></div>
+
+<div th:insert="layouts/plantilla:: scripts"></div>
+
+</body>
+
+</html>
